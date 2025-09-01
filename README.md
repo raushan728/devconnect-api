@@ -173,8 +173,8 @@ To run this project locally, follow these steps:
 
 For any inquiries or collaborations, feel free to reach out:
 
--   **Twitter:** [@Raushan_090](https://twitter.com/Raushan_090)
--   **Email:** [raushansinghrajpoot687@gmail.com](mailto:raushansinghrajpoot687@gmail.com)
+-   [Twitter:](https://twitter.com/Raushan_090)
+-   [Email:](mailto:raushansinghrajpoot687@gmail.com)
 
 ---
 
