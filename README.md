@@ -1,7 +1,28 @@
 # DevConnect API
 
+> A feature-rich and secure backend API for a developer-centric social network. Built with Node.js, Express, MongoDB, and Socket.IO.
+
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/raushan728/devconnect-api)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js](https://img.shields.io/badge/Node.js-18.x-green.svg)](https://nodejs.org/)
+[![Express.js](https://img.shields.io/badge/Express.js-4.x-blue.svg)](https://expressjs.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-6.x-green.svg)](https://www.mongodb.com/)
+[![Socket.IO](https://img.shields.io/badge/Socket.IO-4.x-blue.svg)](https://socket.io/)
+
 **Author:** Raushan Kumar  
 **Repository:** `https://github.com/raushan728/devconnect-api.git`
+
+---
+
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Core Technologies](#core-technologies)
+- [Key Features](#key-features)
+- [API Endpoints](#api-endpoints)
+- [Setup & Installation](#setup--installation)
+- [Contact](#contact)
+- [License](#license)
 
 ---
 
@@ -17,16 +38,16 @@ This backend is fully tested and ready to be integrated with any frontend client
 
 ## Core Technologies
 
-*   **Runtime Environment:** Node.js
-*   **Framework:** Express.js
-*   **Database:** MongoDB with Mongoose (ODM)
-*   **Authentication:** JSON Web Tokens (JWT)
-*   **Real-time Communication:** Socket.IO for messaging and WebRTC signaling
-*   **File Uploads:** Cloudinary for media storage, handled with Multer
-*   **Password Hashing:** bcrypt.js
-*   **Validation:** express-validator
-*   **External API Integration:** GitHub API for fetching user repositories
-*   **Environment Variables:** dotenv
+-   **Runtime Environment:** Node.js
+-   **Framework:** Express.js
+-   **Database:** MongoDB with Mongoose (ODM)
+-   **Authentication:** JSON Web Tokens (JWT)
+-   **Real-time Communication:** Socket.IO for messaging and WebRTC signaling
+-   **File Uploads:** Cloudinary for media storage, handled with Multer
+-   **Password Hashing:** bcrypt.js
+-   **Validation:** express-validator
+-   **External API Integration:** GitHub API for fetching user repositories
+-   **Environment Variables:** dotenv
 
 ---
 
@@ -35,59 +56,73 @@ This backend is fully tested and ready to be integrated with any frontend client
 This backend supports a wide array of features, making it a comprehensive solution for a developer-centric social platform.
 
 #### 1. Authentication & Security
-*   Secure user registration with password hashing (`bcrypt`).
-*   Stateless JWT-based login and authentication.
-*   Protected routes using custom authentication middleware.
-*   "Forgot Password" functionality with secure OTP generation and email delivery via Nodemailer.
+*   **Secure Registration:** User registration with password hashing (`bcrypt`).
+*   **JWT Authentication:** Stateless JWT-based login and authentication for secure access.
+*   **Protected Routes:** Custom authentication middleware to protect sensitive endpoints.
+*   **Password Recovery:** "Forgot Password" functionality with secure OTP generation and email delivery via Nodemailer.
 
 #### 2. Advanced Profile Management
-*   Create and update detailed developer profiles.
-*   Add and delete professional experience and educational background.
-*   Integration with the GitHub API to dynamically fetch and display public repositories.
-*   Functionality to delete a user's account and associated profile.
+*   **CRUD Operations:** Create, update, and delete detailed developer profiles.
+*   **Professional History:** Add and delete professional experience and educational background.
+*   **GitHub Integration:** Dynamically fetch and display public repositories using the GitHub API.
+*   **Account Deletion:** Functionality for users to delete their own account and all associated data.
 
 #### 3. Social Interaction & Posts
-*   Create text-based posts with optional image or video uploads handled by Cloudinary.
-*   View a feed of all posts, sorted chronologically.
-*   Like and unlike posts.
-*   Comment on posts and delete personal comments.
-*   Delete personal posts.
+*   **Rich Media Posts:** Create text-based posts with optional image or video uploads handled by Cloudinary.
+*   **Social Feed:** View a feed of all posts, sorted chronologically.
+*   **Likes & Comments:** Like/unlike posts, comment on posts, and delete personal comments.
+*   **Post Management:** Users can delete their own posts.
 
 #### 4. Communication & Networking
-*   Follow and unfollow other users.
-*   Block and unblock users to manage interactions.
-*   Real-time one-on-one private messaging, powered by Socket.IO.
-*   Backend signaling support for peer-to-peer (P2P) video and audio calls using WebRTC.
+*   **Follow System:** Follow and unfollow other users.
+*   **User Blocking:** Block and unblock users to manage interactions.
+*   **Real-time Messaging:** One-on-one private messaging, powered by Socket.IO.
+*   **Video Call Support:** Backend signaling for peer-to-peer (P2P) video and audio calls using WebRTC.
 
 #### 5. Privacy & Search
-*   Users can set their profiles to "Private," restricting access to followers only.
-*   Advanced search functionality to find other developers by name or technical skills.
+*   **Private Accounts:** Users can set their profiles to "Private," restricting access to followers only.
+*   **Advanced Search:** Search functionality to find other developers by name or technical skills.
 
 ---
 
 ## API Endpoints
 
-A summary of the main API routes available. All private routes require a valid JWT in the `x-auth-token` header.
+A summary of the main API routes available. All `Private` routes require a valid JWT in the `x-auth-token` header.
 
-| Method | Endpoint                       | Description                               | Access   |
-|--------|--------------------------------|-------------------------------------------|----------|
-| `POST` | `/api/users/register`          | Register a new user                       | Public   |
-| `POST` | `/api/users/login`             | Authenticate a user and get a token       | Public   |
-| `GET`  | `/api/users/auth`              | Get logged-in user data                   | Private  |
-| `POST` | `/api/users/forgot-password`   | Send password reset OTP                   | Public   |
-| `POST` | `/api/users/reset-password`    | Reset password with OTP                   | Public   |
-| `GET`  | `/api/profile/me`              | Get current user's profile                | Private  |
-| `POST` | `/api/profile`                 | Create or update a user profile           | Private  |
-| `GET`  | `/api/profile`                 | Get all user profiles                     | Public   |
-| `GET`  | `/api/profile/user/:id`        | Get a profile by user ID                  | Private  |
-| `DELETE`| `/api/profile`                | Delete user, profile, and posts           | Private  |
-| `PUT`  | `/api/profile/experience`      | Add work experience to profile            | Private  |
-| `DELETE`| `/api/profile/experience/:id` | Delete work experience                    | Private  |
-| `GET`  | `/api/profile/github/:user`    | Get GitHub repos for a user               | Public   |
-| `GET`  | `/api/posts`                   | Get all posts                             | Private  |
-| `POST` | `/api/posts`                   | Create a new post                         | Private  |
-| `PUT`  | `/api/posts/like/:id`          | Like or unlike a post                     | Private  |
-| `POST` | `/api/posts/comment/:id`       | Add a comment to a post                   | Private  |
+#### User Routes (`/api/users`)
+| Method | Endpoint                       | Description                     | Access   |
+|--------|--------------------------------|---------------------------------|----------|
+| `POST` | `/register`                    | Register a new user             | Public   |
+| `POST` | `/login`                       | Authenticate a user & get token | Public   |
+| `GET`  | `/auth`                        | Get logged-in user data         | Private  |
+| `POST` | `/forgot-password`             | Send password reset OTP         | Public   |
+| `POST` | `/reset-password`              | Reset password with OTP         | Public   |
+| `PUT`  | `/:id/follow`                  | Follow or unfollow a user       | Private  |
+| `PUT`  | `/:id/block`                   | Block a user                    | Private  |
+
+#### Profile Routes (`/api/profile`)
+| Method | Endpoint                       | Description                     | Access   |
+|--------|--------------------------------|---------------------------------|----------|
+| `GET`  | `/me`                          | Get current user's profile      | Private  |
+| `POST` | `/`                            | Create or update a profile      | Private  |
+| `GET`  | `/`                            | Get all profiles                | Public   |
+| `GET`  | `/user/:id`                    | Get a profile by user ID        | Private  |
+| `DELETE`| `/`                           | Delete user, profile, & posts   | Private  |
+| `PUT`  | `/experience`                  | Add work experience             | Private  |
+| `DELETE`| `/experience/:id`             | Delete work experience          | Private  |
+| `GET`  | `/github/:user`                | Get GitHub repos for a user     | Public   |
+| `GET`  | `/search`                      | Search profiles                 | Public   |
+
+#### Post Routes (`/api/posts`)
+| Method | Endpoint                       | Description                     | Access   |
+|--------|--------------------------------|---------------------------------|----------|
+| `GET`  | `/`                            | Get all posts                   | Private  |
+| `GET`  | `/:id`                         | Get a post by ID                | Private  |
+| `POST` | `/`                            | Create a new post               | Private  |
+| `DELETE`| `/:id`                        | Delete a post                   | Private  |
+| `PUT`  | `/like/:id`                    | Like or unlike a post           | Private  |
+| `POST` | `/comment/:id`                 | Add a comment to a post         | Private  |
+| `DELETE`| `/comment/:id/:comment_id`    | Delete a comment                | Private  |
 
 *(This is a summarized list. For detailed request/response structures, please refer to the code.)*
 
@@ -133,3 +168,16 @@ To run this project locally, follow these steps:
     The server will start on `http://localhost:5000`.
 
 ---
+
+## Contact
+
+For any inquiries or collaborations, feel free to reach out:
+
+-   **Twitter:** [@Raushan_090](https://twitter.com/Raushan_090)
+-   **Email:** [raushansinghrajpoot687@gmail.com](mailto:raushansinghrajpoot687@gmail.com)
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
