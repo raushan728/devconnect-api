@@ -396,7 +396,7 @@ For inquiries, collaborations, or support:
 
 - **Email:** raushansinghrajpoot687@gmail.com
 - **Twitter:** [@Raushan_090](https://twitter.com/Raushan_090)
-- **GitHub:** [raushan728](https://github.com/raushan728)
+- **Linkedin:** [Linkedin](https://www.linkedin.com/in/raushan-kumar-807916390/)
 
 ---
 
